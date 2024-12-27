@@ -1,0 +1,33 @@
+version: '3'  # Versión de Docker Compose
+
+services:
+  db:  # Servicio de base de datos PostgreSQL
+    image: postgres:15  # Imagen oficial de PostgreSQL, versión 15
+    container_name: mi_db # Nombre del contenedor
+    environment:
+      POSTGRES_USER: postgres  # Usuario por defecto para la base de datos
+      POSTGRES_PASSWORD: 12345678  # Contraseña del usuario
+      POSTGRES_DB: data_bank  # Nombre de la base de datos a crear
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+      - ./app/data:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"  
+
+  app:  # Servicio de la aplicación del chatbot
+    build: ./app  # Construir la imagen de la aplicación a partir del Dockerfile en ./app
+    container_name: my_chatbot_1  # Nombre del contenedor
+    environment:
+      DATABASE_URL: postgres://postgres:12345678@db:5432/data_bank  # URL de conexión a la base de datos
+    env_file:
+      - ./app/.env  # Cargar variables de entorno desde el archivo .env
+    depends_on:
+      - db  # Esperar a que el servicio de la base de datos esté listo
+    ports:
+      - "8501:8501"  # Exponer el puerto 8501 para acceder a la aplicación
+    volumes:
+      - ./app:/app  # Montar el directorio de la aplicación
+      - C:\Users\Claudia\Documents\Temas Scotia\prueba_chatbot\app\data\chroma_langchain_db:/app/data/chroma_langchain_db  # Copiar la base de datos Chroma
+      - C:\Users\Claudia\Documents\Temas Scotia\prueba_chatbot\app\data\estados_de_cuenta:/app/data/estados_de_cuenta  # Copiar los estados de cuenta
+volumes:
+  postgres_data:
