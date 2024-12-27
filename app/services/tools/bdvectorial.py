@@ -18,7 +18,7 @@ embeddings = OpenAIEmbeddings(
     dimensions=768
 ) 
 
-vectorstore = Chroma(collection_name="db_prueba", embedding_function=embeddings, persist_directory="app\data\chroma_langchain_db")
+vectorstore = Chroma(collection_name="db_prueba", embedding_function=embeddings, persist_directory="/app/data/chroma_langchain_db")
 retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 5}) 
 
 system_prompt = (

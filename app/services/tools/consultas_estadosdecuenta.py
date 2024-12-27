@@ -18,7 +18,7 @@ mes = "agosto"
 año = "2024"
 
 # Directorio base donde se encuentran los estados de cuenta
-base_dir = "app\data\estados_de_cuenta"
+base_dir = "/app/data/estados_de_cuenta "
 
 def extract_text_from_pdf(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:

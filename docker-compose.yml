@@ -3,7 +3,7 @@ version: '3'  # Versión de Docker Compose
 services:
   db:  # Servicio de base de datos PostgreSQL
     image: postgres:15  # Imagen oficial de PostgreSQL, versión 15
-    container_name: mi_db # Nombre del contenedor
+    container_name: mi_db_ # Nombre del contenedor
     environment:
       POSTGRES_USER: postgres  # Usuario por defecto para la base de datos
       POSTGRES_PASSWORD: 12345678  # Contraseña del usuario
@@ -16,7 +16,7 @@ services:
 
   app:  # Servicio de la aplicación del chatbot
     build: ./app  # Construir la imagen de la aplicación a partir del Dockerfile en ./app
-    container_name: my_chatbot_1  # Nombre del contenedor
+    container_name: my_chatbot_2  # Nombre del contenedor
     environment:
       DATABASE_URL: postgres://postgres:12345678@db:5432/data_bank  # URL de conexión a la base de datos
     env_file:

@@ -2,7 +2,7 @@ import chromadb
 import uuid
 from loguru import logger
 
-chroma_client = chromadb.PersistentClient(path="app\services\db_cache")
+chroma_client = chromadb.PersistentClient(path="app/services/db_cache")
 collection = chroma_client.get_or_create_collection(name="dbcache")
 
 def check_cache(question):
@@ -17,7 +17,7 @@ def check_cache(question):
         return None
     
     distance = cache_result["distances"][0][0]
-    if distance > 0.7:
+    if distance > 0.8:
         logger.info(f'Cache results distant: [{distance}]')
         return None
 

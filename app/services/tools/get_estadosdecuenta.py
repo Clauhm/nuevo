@@ -14,7 +14,7 @@ model = modelo()
 #os.environ["OPENAI_API_KEY"] = ""
 #model = ChatOpenAI(model="gpt-4o", temperature=0.8)
 
-carpeta = "app\data\estados_de_cuenta"
+carpeta = "/app/data/estados_de_cuenta"
 
 email = "plaplia1.09@gmail.com"
 dni = "12345678"
